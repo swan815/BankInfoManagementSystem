@@ -1,0 +1,238 @@
+﻿<Window x:Class="WpfBankTest.AdminManageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="管理员操作界面" Height="600" Width="900" FontSize="15pt" Style="{DynamicResource NoResize_window}" BorderThickness="1" BorderBrush="#FF87AFD4" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Window.Background>
+        <ImageBrush ImageSource="defaultbkg.jpg"/>
+    </Window.Background>
+    <Grid>
+        <Menu HorizontalAlignment="Left" Height="126" VerticalAlignment="Top" Width="876" >
+            <Menu.Background>
+                <ImageBrush ImageSource="12.jpg"></ImageBrush>
+            </Menu.Background>
+            <Menu.Resources>
+                <LinearGradientBrush x:Key="bg" EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Transparent" Offset="0" />
+                    <GradientStop Color="#FF18A9EB" Offset="0.743" />
+                </LinearGradientBrush>
+                <Style TargetType="Menu">
+                    <Setter Property="Background" Value="{StaticResource bg}"/>
+                </Style>
+            </Menu.Resources>
+            <MenuItem  Header="职员管理" FontSize="12pt" FontWeight="Bold" Foreground="Snow">
+                <MenuItem Name="menuItemBaseInfo" Header="职员基本信息管理"></MenuItem>
+                <MenuItem Name="menuItemChangeSalary" Header="工资调整"></MenuItem>
+            </MenuItem>
+            <MenuItem  Header="利率设置" FontSize="12pt" FontWeight="Bold" Foreground="Snow">
+
+                <MenuItem Name="menuItemChangeRate" Header="修改利率" Click="menuItemChangeRate_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Name="menuItemClose" Header="退出" Click="menuItemClose_Click" FontSize="12pt" FontWeight="Bold"  Foreground="Snow">
+
+
+            </MenuItem>
+        </Menu>
+        <Grid Margin="0,36,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="728*"/>
+                <ColumnDefinition Width="129*"/>
+                <ColumnDefinition Width="20*"/>
+            </Grid.ColumnDefinitions>
+            <TabControl Margin="3,32,3,4" Style="{DynamicResource HomeTabControlStyle}" Background="{x:Null}" Grid.ColumnSpan="3">
+                <TabItem Header="管理员操作界面" Height="35.767" Width="145.37" Margin="64,22,0,0" Style="{DynamicResource TabItemStyle}" FontSize="13.333" FontFamily="Microsoft YaHei" Foreground="Black">
+                    <Grid Margin="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.075*"/>
+                            <RowDefinition Height="0.925*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.192*"/>
+                            <ColumnDefinition Width="0.808*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="White" Offset="0.002"/>
+                                <GradientStop Color="WhiteSmoke" Offset="1"/>
+                                <GradientStop Color="#FFF7F7F7" Offset="0.002"/>
+                            </LinearGradientBrush>
+                        </Grid.Background>
+                        <Grid.Effect>
+                            <DropShadowEffect ShadowDepth="0" BlurRadius="11" Color="#FF154F87"/>
+                        </Grid.Effect>
+                        <Label Content="      管理员操作界面" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Background="#FFFDFDFD" Foreground="#BB48677C" Margin="0,1,0,0"/>
+                        <TabControl Margin="0,0.5" Grid.ColumnSpan="2" Grid.Row="1" Style="{DynamicResource TabControlStyle}" BorderThickness="0,1,0,0" BorderBrush="{x:Null}" Background="{x:Null}">
+                            <TabItem Name="tabItemBaseInfo" Header="职员信息管理" Margin="0" Style="{DynamicResource listTabItemStyle}" BorderBrush="{x:Null}" Foreground="#FF0E3C7A" Height="27.598">
+                                <TabItem.Background>
+                                    <ImageBrush ImageSource="ck1.png" Stretch="Uniform"/>
+                                </TabItem.Background>
+                                <StackPanel Margin="2,0,-1,11.5" Height="400" VerticalAlignment="Bottom">
+                                    <TextBlock Text="在单元格中直接修改职工个人信息" FontSize="15pt" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                    <DataGrid Name="dataGrid2" AutoGenerateColumns="False" Background="#FFDDFBF9">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="业务员工号" Binding="{Binding YNo}" Width="115" />
+                                            <DataGridTextColumn Header="姓名" Binding="{Binding YName}" Width="115"/>
+                                            <DataGridTextColumn Header="性别" Binding="{Binding YSex}" Width="115"/>
+                                            <DataGridTextColumn Header="手机号码" Binding="{Binding YPhoneNum}" Width="115"/>
+                                            <DataGridTextColumn Header="身份证号" Binding="{Binding YID}" Width="115"/>
+                                            <DataGridTemplateColumn Header="工作日期" SortMemberPath="YWorkDate"
+                                            CellTemplate="{StaticResource WorkDateTemplate}"
+                                            CellEditingTemplate="{StaticResource EditingWorkDateTemplate}"  Width="125"/>
+
+
+
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <Button x:Name="btnSavePersonalInfo" Content="确认保存信息" Margin="300,10,300,0" Click="btnSavePersonalInfo_Click" RenderTransformOrigin="0.014,2.023"/>
+                                </StackPanel>
+
+                            </TabItem>
+                            <TabItem Name="tabItemAddEmployee" Header="职员信息添加" Margin="0" Style="{DynamicResource listTabItemStyle}" BorderBrush="{x:Null}" Foreground="#FF0E3C7A" Height="27.598">
+                                <TabItem.Background>
+                                    <ImageBrush ImageSource="qk1.png" Stretch="UniformToFill"/>
+                                </TabItem.Background>
+                                <Grid Background="White" Height="409" Width="703">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30*"/>
+                                        <ColumnDefinition Width="839*"/>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <Grid.Effect>
+                                        <DropShadowEffect BlurRadius="8" ShadowDepth="0" Color="#FF5C8185" Opacity="0.25" Direction="225"/>
+                                    </Grid.Effect>
+                                    <Label Content="姓名：" HorizontalAlignment="Left" Margin="54.5,140,0,0" VerticalAlignment="Top" Grid.Column="1" RenderTransformOrigin="0.47,-0.164"/>
+                                    <Label Content="登录密码：" HorizontalAlignment="Left" Margin="54.5,86,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                    <Label Content="编号：" HorizontalAlignment="Left" Margin="54.5,39,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                    <Label Content="身份证号：" HorizontalAlignment="Left" Margin="315.5,140,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+
+                                    <Label Content="工作日期：" HorizontalAlignment="Left" Margin="315.5,206,0,0" VerticalAlignment="Top" Grid.Column="1" RenderTransformOrigin="0.556,-0.055"/>
+                                    <TextBox x:Name="textBoxAYPhone" HorizontalAlignment="Left" Height="24" Margin="401.5,86,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="172" Grid.Column="1"/>
+                                    <PasswordBox x:Name="textBoxAYPwd" HorizontalAlignment="Left" Margin="131.5,86,0,0" VerticalAlignment="Top" Height="24" Width="172" Grid.Column="1"/>
+                                    <TextBox x:Name="textBoxAYNo" HorizontalAlignment="Left" Height="24" Margin="131.5,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="172" Grid.Column="1"/>
+                                    <Label Content="性别：" Grid.Column="1" HorizontalAlignment="Left" Margin="315.5,36,0,0" VerticalAlignment="Top"/>
+                                    <Label Content="职位：" Grid.Column="1" HorizontalAlignment="Left" Margin="54.5,206,0,0" VerticalAlignment="Top"/>
+                                    <Label Content="联系电话：" Grid.Column="1" HorizontalAlignment="Left" Margin="315.5,86,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.451,0.164"/>
+
+
+                                    <Button x:Name="btnAddEmployee" Content="确认添加" HorizontalAlignment="Left" Margin="147.5,284,0,0" VerticalAlignment="Top" Width="98" Height="26"  Grid.Column="1" Click="btnAddEmployee_Clicl"/>
+                                    <Button x:Name="btnCancelOpen" Content="取消" HorizontalAlignment="Left" Margin="411.5,284,0,0" VerticalAlignment="Top" Width="100" Height="26" Grid.Column="1"/>
+                                    <TextBox x:Name="textBoxOpenID" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="401.5,144,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="170"/>
+                                    <DatePicker x:Name="datePickerWorkDate" Grid.Column="1" HorizontalAlignment="Left" Margin="401.5,208,0,0" VerticalAlignment="Top" Width="171"/>
+                                    <TextBox x:Name="textAYPosition" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="131.5,206,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171"/>
+                                    <TextBox x:Name="textBoxAYSex" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="402.5,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171"/>
+                                    <TextBox x:Name="textBoxAYName" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="131.5,144,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171"/>
+
+                                    <TextBlock Text="添加职员个人信息" FontSize="15pt" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="1" Margin="211.5,10,167,370"/>
+
+
+                                </Grid>
+                            </TabItem>
+                            <TabItem Name="TabItemChangeSalary" Header="工资调整" Margin="0" Style="{DynamicResource listTabItemStyle}" BorderBrush="{x:Null}" Foreground="#FF0E3C7A" Height="27.598" Loaded="TabItemChangeSalary_Loaded">
+                                <TabItem.Background>
+                                    <ImageBrush ImageSource="kh1.png" Stretch="UniformToFill"/>
+                                </TabItem.Background>
+                                <Grid Background="White" Height="408" Width="703">
+
+                                    <DataGrid x:Name="dataGrid3" AutoGenerateColumns="False" Margin="0,50,0,84" >
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="业务员工号" Binding="{Binding YNo}" Width="150" />
+                                            <DataGridTextColumn Header="姓名" Binding="{Binding YName}" Width="150"/>
+                                            <DataGridTemplateColumn Header="工作日期" SortMemberPath="YWorkDate"
+                            				CellTemplate="{StaticResource WorkDateTemplate}"
+                            				CellEditingTemplate="{StaticResource EditingWorkDateTemplate}"  Width="150"/>
+                                            <DataGridTextColumn Header="工资" Binding="{Binding YWorkSalary}" Width="250"/>
+
+
+
+
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <TextBlock Text="在单元格中直接修改职工个人工资" FontSize="15pt" HorizontalAlignment="Center" FontWeight="Bold" Margin="204,10,199,363" RenderTransformOrigin="0.433,0.543"/>
+                                    <Button Name="btnSaveChangeSalary" Content="保存修改后的工资" HorizontalAlignment="Left" Margin="298,342,0,0" VerticalAlignment="Top" Width="126" Click="btnSaveChangeSalary_Click"/>
+                                </Grid>
+
+
+                            </TabItem>
+                            <TabItem Name="tabItemChangeRate" Header="利率设置" Margin="0" Style="{DynamicResource listTabItemStyle}" BorderBrush="{x:Null}" Foreground="#FF0E3C7A" Height="27.598" Loaded="tabItemChangeRate_Loaded" >
+                                <TabItem.Background>
+                                    <ImageBrush ImageSource="record.png" Stretch="UniformToFill"/>
+                                </TabItem.Background>
+                                <Grid Background="White">
+                                    <Frame Name="Frame1" Content="Frame" HorizontalAlignment="Left" Height="401" VerticalAlignment="Top" Width="700" RenderTransformOrigin="0.306,0.449"/>
+
+                                </Grid>
+                            </TabItem>
+
+                            <TabItem Name="tabItemChangeYPwd" Header="更改业务员密码" Margin="0" Style="{DynamicResource listTabItemStyle}" BorderBrush="{x:Null}" Foreground="#FF0E3C7A" Height="27.598">
+                                <TabItem.Background>
+                                    <ImageBrush ImageSource="88.png" Stretch="UniformToFill"/>
+                                </TabItem.Background>
+                                <Grid Background="White">
+                                    <TextBlock HorizontalAlignment="Left" Margin="193,157,0,0" TextWrapping="Wrap" Text="业务员原密码：" VerticalAlignment="Top"/>
+                                    <PasswordBox Name="pwdBoxOldYPwd" HorizontalAlignment="Left" Margin="294,149,0,0" VerticalAlignment="Top" Height="26" Width="219"/>
+                                    <TextBlock HorizontalAlignment="Left" Margin="193,226,0,0" TextWrapping="Wrap" Text="新密码：" VerticalAlignment="Top"/>
+                                    <PasswordBox Name="pwdBoxNewYPwd" HorizontalAlignment="Left" Margin="294,218,0,0" VerticalAlignment="Top" Height="26" Width="219"/>
+                                    <Button Name="btnVerifyChange" Content="确认修改" HorizontalAlignment="Left" Margin="197,316,0,0" VerticalAlignment="Top" Width="76"/>
+                                    <Button Name="CancelChange" Content="取消修改" HorizontalAlignment="Left" Margin="438,316,0,0" VerticalAlignment="Top" Width="75"/>
+                                    <TextBlock HorizontalAlignment="Left" Margin="193,86,0,0" TextWrapping="Wrap" Text="业务员账号：" VerticalAlignment="Top"/>
+                                    <TextBox Name="textBoxChangeYNo" HorizontalAlignment="Left" Height="23" Margin="294,81,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="219"/>
+
+
+
+                                    <Grid.Effect>
+                                        <DropShadowEffect BlurRadius="8" ShadowDepth="0" Color="#FF5C8185" Opacity="0.25" Direction="225"/>
+                                    </Grid.Effect>
+                                </Grid>
+                            </TabItem>
+
+                            <TabItem Name="tabItemHelp" Header="系统操作帮助" Margin="0" Style="{DynamicResource listTabItemStyle}" BorderBrush="{x:Null}" Foreground="#FF0E3C7A" Height="27.598">
+                                <TabItem.Background>
+                                    <ImageBrush ImageSource="kh1.png" Stretch="UniformToFill"/>
+                                </TabItem.Background>
+                                <Grid Background="White">
+                                    <Grid.Effect>
+                                        <DropShadowEffect BlurRadius="8" ShadowDepth="0" Color="#FF5C8185" Opacity="0.25" Direction="225"/>
+                                    </Grid.Effect>
+                                    <TextBlock HorizontalAlignment="Left" Margin="272,28,0,0" TextWrapping="Wrap" Text="系统操作帮助" VerticalAlignment="Top" FontSize="18pt"/>
+                                    <TextBlock HorizontalAlignment="Left" Margin="88,88,0,0" TextWrapping="Wrap" Text="这是一个银行管理系统" VerticalAlignment="Top"/>
+                                    <TextBlock HorizontalAlignment="Left" Margin="88,123,0,0" TextWrapping="Wrap" Text="在业务员操作界面：实现了储户查询，客户挂失，客户开户，客户销户，存款取款转账，查询存款取款转账记录当日汇总流水记录，更改客户密码以及更改业务员密码等功能。客户端登录账号：10001，密码：123456" VerticalAlignment="Top" Width="491"/>
+                                    <TextBlock HorizontalAlignment="Left" Margin="88,190,0,0" TextWrapping="Wrap" Text="在管理员段界面：实现了职员添加管理，职员工资修改，利率修改等功能。管理员端账户：13001，密码：123456" VerticalAlignment="Top" Width="491"/>
+                                </Grid>
+                            </TabItem>
+                            <TabItem Name="tabItemAboutSoft" Header="关于软件" Margin="0" Style="{DynamicResource listTabItemStyle}" BorderBrush="{x:Null}" Foreground="#FF0E3C7A" Height="27.598">
+                                <TabItem.Background>
+                                    <ImageBrush ImageSource="zz.png" Stretch="UniformToFill"/>
+                                </TabItem.Background>
+                                <Grid Background="White">
+                                    <Grid.Effect>
+                                        <DropShadowEffect BlurRadius="8" ShadowDepth="0" Color="#FF5C8185" Opacity="0.25" Direction="225"/>
+                                    </Grid.Effect>
+                                    <TextBlock HorizontalAlignment="Left" Margin="198,133,0,0" TextWrapping="Wrap" Text="软件制作：楼思源" VerticalAlignment="Top"/>
+                                    <TextBlock HorizontalAlignment="Left" Margin="198,194,0,0" TextWrapping="Wrap" Text="山东大学（威海）机电与信息工程学院2014级计算机科学与技术一班" VerticalAlignment="Top"/>
+                                    <TextBlock HorizontalAlignment="Left" Margin="198,254,0,0" TextWrapping="Wrap" Text="学号：201400800391" VerticalAlignment="Top"/>
+                                    <TextBlock HorizontalAlignment="Left" Margin="198,76,0,0" TextWrapping="Wrap" Text="C#综合实验" VerticalAlignment="Top"/>
+                                </Grid>
+                            </TabItem>
+                           
+                        </TabControl>
+
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <Border BorderBrush="#4F49779B" BorderThickness="0,1,0,0" Margin="3,0,3,3" Height="0" VerticalAlignment="Bottom" Background="White" Grid.ColumnSpan="3"/>
+
+            <Rectangle HorizontalAlignment="Left" Height="66" StrokeThickness="0" VerticalAlignment="Top" Width="65" Margin="3,18,0,0">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="用户.png" Stretch="UniformToFill"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+
+        <Border BorderBrush="#4F49779B" BorderThickness="0,1,0,0" Margin="3,0,3,3" Height="32" VerticalAlignment="Bottom" Background="White"/>
+        <Button x:Name="x" Content="Button" HorizontalAlignment="Right" Height="24" Style="{DynamicResource XButtonStyle}" VerticalAlignment="Top" Width="46" Margin="0,-1,0,0" Click="x_Click" />
+        <Button x:Name="m" Content="Button" HorizontalAlignment="Right" Height="24" Style="{DynamicResource MButtonStyle}" VerticalAlignment="Top" Width="35.5" Margin="0,-1,46.25,0"/>
+        <Button x:Name="__" Content="Button" HorizontalAlignment="Right" Height="24" Style="{DynamicResource -ButtonStyle}" VerticalAlignment="Top" Width="35" Margin="0,-1,82.2,0"/>
+
+    </Grid>
+</Window>

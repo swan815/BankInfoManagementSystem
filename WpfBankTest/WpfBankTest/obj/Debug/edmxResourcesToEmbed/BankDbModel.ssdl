@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankInfoManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CreditCardInfo">
+    <Key>
+      <PropertyRef Name="CNo" />
+    </Key>
+    <Property Name="CNo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CPassword" Type="char" MaxLength="6" Nullable="false" />
+    <Property Name="CBalance" Type="money" Nullable="false" />
+    <Property Name="CDate" Type="date" Nullable="false" />
+    <Property Name="COpenAdress" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CPhoneNo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CLoss" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="DeposInfo">
+    <Key>
+      <PropertyRef Name="CNo" />
+    </Key>
+    <Property Name="CNo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CSex" Type="char" MaxLength="2" />
+    <Property Name="CPassword" Type="char" MaxLength="6" Nullable="false" />
+    <Property Name="CID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CDate" Type="datetime" Nullable="false" />
+    <Property Name="CAdress" Type="varchar" MaxLength="100" />
+    <Property Name="CPhoneNum" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="EmploeeInfo">
+    <Key>
+      <PropertyRef Name="YNo" />
+    </Key>
+    <Property Name="YNo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="YPassword" Type="varchar" MaxLength="10" />
+    <Property Name="YName" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="YPosition" Type="int" Nullable="false" />
+    <Property Name="YSex" Type="char" MaxLength="2" />
+    <Property Name="YPhoneNum" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="YID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="YWorkDate" Type="date" Nullable="false" />
+    <Property Name="YWorkSalary" Type="money" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“BankInfoManagement.dbo.OperationLog”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="OperationLog">
+    <Key>
+      <PropertyRef Name="CNo" />
+      <PropertyRef Name="CName" />
+      <PropertyRef Name="CDate" />
+      <PropertyRef Name="CMoney" />
+    </Key>
+    <Property Name="CNo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CName" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CStyle" Type="char" MaxLength="20" />
+    <Property Name="CDate" Type="date" Nullable="false" />
+    <Property Name="CMoney" Type="money" Nullable="false" />
+    <Property Name="CTimeLen" Type="int" />
+    <Property Name="CRate" Type="float" />
+    <Property Name="Interest" Type="money" />
+  </EntityType>
+  <EntityType Name="RateInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RateType" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Rate" Type="float" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“BankInfoManagement.dbo.TransferInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="TransferInfo">
+    <Key>
+      <PropertyRef Name="OutNo" />
+      <PropertyRef Name="OutName" />
+      <PropertyRef Name="InNo" />
+      <PropertyRef Name="TransMoney" />
+      <PropertyRef Name="TDate" />
+    </Key>
+    <Property Name="OutNo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="OutName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="InNo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TransMoney" Type="money" Nullable="false" />
+    <Property Name="TDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="BankInfoManagementModelStoreContainer">
+    <EntitySet Name="CreditCardInfo" EntityType="Self.CreditCardInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeposInfo" EntityType="Self.DeposInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmploeeInfo" EntityType="Self.EmploeeInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RateInfo" EntityType="Self.RateInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OperationLog" EntityType="Self.OperationLog" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [OperationLog].[CNo] AS [CNo], 
+    [OperationLog].[CName] AS [CName], 
+    [OperationLog].[CStyle] AS [CStyle], 
+    [OperationLog].[CDate] AS [CDate], 
+    [OperationLog].[CMoney] AS [CMoney], 
+    [OperationLog].[CTimeLen] AS [CTimeLen], 
+    [OperationLog].[CRate] AS [CRate], 
+    [OperationLog].[Interest] AS [Interest]
+    FROM [dbo].[OperationLog] AS [OperationLog]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TransferInfo" EntityType="Self.TransferInfo" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TransferInfo].[OutNo] AS [OutNo], 
+    [TransferInfo].[OutName] AS [OutName], 
+    [TransferInfo].[InNo] AS [InNo], 
+    [TransferInfo].[TransMoney] AS [TransMoney], 
+    [TransferInfo].[TDate] AS [TDate]
+    FROM [dbo].[TransferInfo] AS [TransferInfo]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

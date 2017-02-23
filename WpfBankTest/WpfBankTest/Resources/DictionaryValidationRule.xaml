@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="ValidationTextStyle" TargetType="TextBox">
+        <Setter Property="Width" Value="60"/>
+        <Setter Property="Margin" Value="10"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="Validation.ErrorTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <DockPanel LastChildFill="True">
+                                <TextBlock DockPanel.Dock="Right"
+                                           Foreground="Red" FontSize="12pt"
+                                           Text="{Binding ElementName=MyAdorner,
+                                    Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                                    
+                                </TextBlock>
+                                <Image DockPanel.Dock="Right" Width="20"
+                                       Source="/images/sad.png"/>
+                                <Border BorderBrush="Red"
+                                        BorderThickness="1">
+                                    <AdornedElementPlaceholder Name="MyAdoner"/>
+                                </Border>
+                                           
+                            </DockPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+        
+    </Style>
+</ResourceDictionary>

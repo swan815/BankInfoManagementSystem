@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BankInfoManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CreditCardInfo">
+          <Key>
+            <PropertyRef Name="CNo" />
+          </Key>
+          <Property Name="CNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CPassword" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="CBalance" Type="money" Nullable="false" />
+          <Property Name="CDate" Type="date" Nullable="false" />
+          <Property Name="COpenAdress" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CPhoneNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CLoss" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="DeposInfo">
+          <Key>
+            <PropertyRef Name="CNo" />
+          </Key>
+          <Property Name="CNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CSex" Type="char" MaxLength="2" />
+          <Property Name="CPassword" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="CID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CDate" Type="datetime" Nullable="false" />
+          <Property Name="CAdress" Type="varchar" MaxLength="100" />
+          <Property Name="CPhoneNum" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="EmploeeInfo">
+          <Key>
+            <PropertyRef Name="YNo" />
+          </Key>
+          <Property Name="YNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="YPassword" Type="varchar" MaxLength="10" />
+          <Property Name="YName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="YPosition" Type="int" Nullable="false" />
+          <Property Name="YSex" Type="char" MaxLength="2" />
+          <Property Name="YPhoneNum" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="YID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="YWorkDate" Type="date" Nullable="false" />
+          <Property Name="YWorkSalary" Type="money" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“BankInfoManagement.dbo.OperationLog”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="OperationLog">
+          <Key>
+            <PropertyRef Name="CNo" />
+            <PropertyRef Name="CName" />
+            <PropertyRef Name="CDate" />
+            <PropertyRef Name="CMoney" />
+          </Key>
+          <Property Name="CNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CStyle" Type="char" MaxLength="20" />
+          <Property Name="CDate" Type="date" Nullable="false" />
+          <Property Name="CMoney" Type="money" Nullable="false" />
+          <Property Name="CTimeLen" Type="int" />
+          <Property Name="CRate" Type="float" />
+          <Property Name="Interest" Type="money" />
+        </EntityType>
+        <EntityType Name="RateInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RateType" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Rate" Type="float" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“BankInfoManagement.dbo.TransferInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="TransferInfo">
+          <Key>
+            <PropertyRef Name="OutNo" />
+            <PropertyRef Name="OutName" />
+            <PropertyRef Name="InNo" />
+            <PropertyRef Name="TransMoney" />
+            <PropertyRef Name="TDate" />
+          </Key>
+          <Property Name="OutNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="OutName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="InNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TransMoney" Type="money" Nullable="false" />
+          <Property Name="TDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BankInfoManagementModelStoreContainer">
+          <EntitySet Name="CreditCardInfo" EntityType="Self.CreditCardInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeposInfo" EntityType="Self.DeposInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmploeeInfo" EntityType="Self.EmploeeInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RateInfo" EntityType="Self.RateInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OperationLog" EntityType="Self.OperationLog" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OperationLog].[CNo] AS [CNo], 
+    [OperationLog].[CName] AS [CName], 
+    [OperationLog].[CStyle] AS [CStyle], 
+    [OperationLog].[CDate] AS [CDate], 
+    [OperationLog].[CMoney] AS [CMoney], 
+    [OperationLog].[CTimeLen] AS [CTimeLen], 
+    [OperationLog].[CRate] AS [CRate], 
+    [OperationLog].[Interest] AS [Interest]
+    FROM [dbo].[OperationLog] AS [OperationLog]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TransferInfo" EntityType="Self.TransferInfo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TransferInfo].[OutNo] AS [OutNo], 
+    [TransferInfo].[OutName] AS [OutName], 
+    [TransferInfo].[InNo] AS [InNo], 
+    [TransferInfo].[TransMoney] AS [TransMoney], 
+    [TransferInfo].[TDate] AS [TDate]
+    FROM [dbo].[TransferInfo] AS [TransferInfo]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BankInfoManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CreditCardInfo">
+          <Key>
+            <PropertyRef Name="CNo" />
+          </Key>
+          <Property Name="CNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CPassword" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CBalance" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="COpenAdress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CPhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLoss" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DeposInfo">
+          <Key>
+            <PropertyRef Name="CNo" />
+          </Key>
+          <Property Name="CNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CSex" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CPassword" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CAdress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CPhoneNum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EmploeeInfo">
+          <Key>
+            <PropertyRef Name="YNo" />
+          </Key>
+          <Property Name="YNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="YPassword" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="YName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="YPosition" Type="Int32" Nullable="false" />
+          <Property Name="YSex" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="YPhoneNum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="YID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="YWorkDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="YWorkSalary" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="RateInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RateType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Rate" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OperationLog">
+          <Key>
+            <PropertyRef Name="CNo" />
+            <PropertyRef Name="CName" />
+            <PropertyRef Name="CDate" />
+            <PropertyRef Name="CMoney" />
+          </Key>
+          <Property Name="CNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CStyle" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="CDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CMoney" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CTimeLen" Type="Int32" />
+          <Property Name="CRate" Type="Double" />
+          <Property Name="Interest" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="TransferInfo">
+          <Key>
+            <PropertyRef Name="OutNo" />
+            <PropertyRef Name="OutName" />
+            <PropertyRef Name="InNo" />
+            <PropertyRef Name="TransMoney" />
+            <PropertyRef Name="TDate" />
+          </Key>
+          <Property Name="OutNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OutName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TransMoney" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="BankInfoManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CreditCardInfo" EntityType="Self.CreditCardInfo" />
+          <EntitySet Name="DeposInfo" EntityType="Self.DeposInfo" />
+          <EntitySet Name="EmploeeInfo" EntityType="Self.EmploeeInfo" />
+          <EntitySet Name="RateInfo" EntityType="Self.RateInfo" />
+          <EntitySet Name="OperationLog" EntityType="Self.OperationLog" />
+          <EntitySet Name="TransferInfo" EntityType="Self.TransferInfo" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BankInfoManagementModelStoreContainer" CdmEntityContainer="BankInfoManagementEntities">
+          <EntitySetMapping Name="CreditCardInfo">
+            <EntityTypeMapping TypeName="BankInfoManagementModel.CreditCardInfo">
+              <MappingFragment StoreEntitySet="CreditCardInfo">
+                <ScalarProperty Name="CNo" ColumnName="CNo" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CPassword" ColumnName="CPassword" />
+                <ScalarProperty Name="CBalance" ColumnName="CBalance" />
+                <ScalarProperty Name="CDate" ColumnName="CDate" />
+                <ScalarProperty Name="COpenAdress" ColumnName="COpenAdress" />
+                <ScalarProperty Name="CPhoneNo" ColumnName="CPhoneNo" />
+                <ScalarProperty Name="CLoss" ColumnName="CLoss" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeposInfo">
+            <EntityTypeMapping TypeName="BankInfoManagementModel.DeposInfo">
+              <MappingFragment StoreEntitySet="DeposInfo">
+                <ScalarProperty Name="CNo" ColumnName="CNo" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CSex" ColumnName="CSex" />
+                <ScalarProperty Name="CPassword" ColumnName="CPassword" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="CDate" ColumnName="CDate" />
+                <ScalarProperty Name="CAdress" ColumnName="CAdress" />
+                <ScalarProperty Name="CPhoneNum" ColumnName="CPhoneNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmploeeInfo">
+            <EntityTypeMapping TypeName="BankInfoManagementModel.EmploeeInfo">
+              <MappingFragment StoreEntitySet="EmploeeInfo">
+                <ScalarProperty Name="YWorkSalary" ColumnName="YWorkSalary" />
+                <ScalarProperty Name="YNo" ColumnName="YNo" />
+                <ScalarProperty Name="YPassword" ColumnName="YPassword" />
+                <ScalarProperty Name="YName" ColumnName="YName" />
+                <ScalarProperty Name="YPosition" ColumnName="YPosition" />
+                <ScalarProperty Name="YSex" ColumnName="YSex" />
+                <ScalarProperty Name="YPhoneNum" ColumnName="YPhoneNum" />
+                <ScalarProperty Name="YID" ColumnName="YID" />
+                <ScalarProperty Name="YWorkDate" ColumnName="YWorkDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RateInfo">
+            <EntityTypeMapping TypeName="BankInfoManagementModel.RateInfo">
+              <MappingFragment StoreEntitySet="RateInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RateType" ColumnName="RateType" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OperationLog">
+            <EntityTypeMapping TypeName="BankInfoManagementModel.OperationLog">
+              <MappingFragment StoreEntitySet="OperationLog">
+                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="CNo" ColumnName="CNo" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CStyle" ColumnName="CStyle" />
+                <ScalarProperty Name="CDate" ColumnName="CDate" />
+                <ScalarProperty Name="CMoney" ColumnName="CMoney" />
+                <ScalarProperty Name="CTimeLen" ColumnName="CTimeLen" />
+                <ScalarProperty Name="CRate" ColumnName="CRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransferInfo">
+            <EntityTypeMapping TypeName="BankInfoManagementModel.TransferInfo">
+              <MappingFragment StoreEntitySet="TransferInfo">
+                <ScalarProperty Name="OutNo" ColumnName="OutNo" />
+                <ScalarProperty Name="OutName" ColumnName="OutName" />
+                <ScalarProperty Name="InNo" ColumnName="InNo" />
+                <ScalarProperty Name="TransMoney" ColumnName="TransMoney" />
+                <ScalarProperty Name="TDate" ColumnName="TDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

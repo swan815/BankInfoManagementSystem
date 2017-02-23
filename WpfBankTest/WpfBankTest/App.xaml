@@ -1,0 +1,19 @@
+﻿<Application x:Class="WpfBankTest.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/NorezeWindow.xaml"/>
+                <ResourceDictionary Source="/Resources/Hometab.xaml"/>
+                <ResourceDictionary Source="/Resources/DataGridColumnTemplate.xaml"/>
+                <ResourceDictionary Source="/Resources/Button.xaml"/>
+                <ResourceDictionary Source="/Resources/Tabitem.xaml"/>
+                <ResourceDictionary Source="/Resources/Datagridinfo.xaml"/>
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+    </Application.Resources>
+</Application>

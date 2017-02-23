@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DataTemplate x:Key="WorkDateTemplate">
+        <TextBlock Text="{Binding YWorkDate,StringFormat={}{0:yyyy-MM-dd}}"/>
+    </DataTemplate>
+    <DataTemplate x:Key="EditingWorkDateTemplate">
+        <DatePicker
+            SelectedDate="{Binding YWorkDate, Mode=TwoWay,
+            NotifyOnValidationError=True,ValidatesOnExceptions=True}">
+            <DatePicker.Resources>
+                <Style TargetType="DatePickerTextBox">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="DatePickerTextBox">
+                                <TextBox x:Name="PART_TextBox"
+                                         Text="{Binding Path=SelectedDate,
+                                    RelativeSource={RelativeSource AncestorType={x:Type DatePicker}},
+                                    StringFormat={}{0:yyyy-MM-dd}}"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DatePicker.Resources>
+        </DatePicker>
+    </DataTemplate>
+</ResourceDictionary>

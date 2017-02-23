@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankInfoManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CreditCardInfo">
+    <Key>
+      <PropertyRef Name="CNo" />
+    </Key>
+    <Property Name="CNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CPassword" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CBalance" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="CDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="COpenAdress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CPhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CLoss" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DeposInfo">
+    <Key>
+      <PropertyRef Name="CNo" />
+    </Key>
+    <Property Name="CNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CSex" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="CPassword" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CAdress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CPhoneNum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="EmploeeInfo">
+    <Key>
+      <PropertyRef Name="YNo" />
+    </Key>
+    <Property Name="YNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="YPassword" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="YName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="YPosition" Type="Int32" Nullable="false" />
+    <Property Name="YSex" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="YPhoneNum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="YID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="YWorkDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="YWorkSalary" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="RateInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RateType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Rate" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OperationLog">
+    <Key>
+      <PropertyRef Name="CNo" />
+      <PropertyRef Name="CName" />
+      <PropertyRef Name="CDate" />
+      <PropertyRef Name="CMoney" />
+    </Key>
+    <Property Name="CNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CStyle" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="CDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CMoney" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="CTimeLen" Type="Int32" />
+    <Property Name="CRate" Type="Double" />
+    <Property Name="Interest" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="TransferInfo">
+    <Key>
+      <PropertyRef Name="OutNo" />
+      <PropertyRef Name="OutName" />
+      <PropertyRef Name="InNo" />
+      <PropertyRef Name="TransMoney" />
+      <PropertyRef Name="TDate" />
+    </Key>
+    <Property Name="OutNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OutName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TransMoney" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityContainer Name="BankInfoManagementEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CreditCardInfo" EntityType="Self.CreditCardInfo" />
+    <EntitySet Name="DeposInfo" EntityType="Self.DeposInfo" />
+    <EntitySet Name="EmploeeInfo" EntityType="Self.EmploeeInfo" />
+    <EntitySet Name="RateInfo" EntityType="Self.RateInfo" />
+    <EntitySet Name="OperationLog" EntityType="Self.OperationLog" />
+    <EntitySet Name="TransferInfo" EntityType="Self.TransferInfo" />
+  </EntityContainer>
+</Schema>

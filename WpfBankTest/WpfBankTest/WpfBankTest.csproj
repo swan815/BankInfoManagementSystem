@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BA3EE5BD-38E6-443C-AF84-85A9AC71CC7D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WpfBankTest</RootNamespace>
+    <AssemblyName>WpfBankTest</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Admin\AdminManageWindow.xaml.cs">
+      <DependentUpon>AdminManageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assistant\AssistantWindow.xaml.cs">
+      <DependentUpon>AssistantWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BankDbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Pages\ChangeInterest.xaml.cs">
+      <DependentUpon>ChangeInterest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="btnCalculateInterest.xaml.cs">
+      <DependentUpon>btnCalculateInterest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreditCardInfo.cs">
+      <DependentUpon>BankDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomValidationRules.cs" />
+    <Compile Include="db.cs" />
+    <Compile Include="DeposInfo.cs">
+      <DependentUpon>BankDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmploeeInfo.cs">
+      <DependentUpon>BankDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperationLog.cs">
+      <DependentUpon>BankDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RateInfo.cs">
+      <DependentUpon>BankDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransferInfo.cs">
+      <DependentUpon>BankDbModel.tt</DependentUpon>
+    </Compile>
+    <Page Include="Admin\AdminManageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assistant\AssistantWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Pages\ChangeInterest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="btnCalculateInterest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BankDbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankDbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BankDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BankDbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Resources\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DataGridColumnTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Datagridinfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DictionaryValidationRule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Hometab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\NorezeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Tabitem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="BankDbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BankDbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BankDbModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BankDbModel.edmx</DependentUpon>
+      <LastGenOutput>BankDbModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="BankDbModel.edmx.diagram">
+      <DependentUpon>BankDbModel.edmx</DependentUpon>
+    </None>
+    <None Include="BankDbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BankDbModel.edmx</DependentUpon>
+      <LastGenOutput>BankDbModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assistant\defaultbkg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Admin\defaultbkg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assistant\tt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assistant\ff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assistant\88.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assistant\qqq.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\kh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assistant\kh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assistant\ck1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assistant\qk1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assistant\record.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assistant\zz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assistant\用户.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Admin\ck1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Admin\kh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Admin\record.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Admin\zz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Admin\用户.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Admin\tt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Admin\88.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="defaultbkg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Admin\qk1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ck1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="用户.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="12.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assistant\12.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Admin\12.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="111.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="112.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

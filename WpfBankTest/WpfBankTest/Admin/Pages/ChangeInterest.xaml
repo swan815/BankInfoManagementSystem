@@ -1,0 +1,31 @@
+﻿<Page x:Class="WpfBankTest.ChangeInterest"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="250" d:DesignWidth="700"
+	Title="ChangeInterest">
+    <Border BorderBrush="Green" BorderThickness="1">
+        <StackPanel>
+            <TextBlock Text="在单元格中直接修改利率信息"/>
+            <DataGrid Name="dataGrid1" AutoGenerateColumns="False" Background="#FFDDFBF9">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="序号" Binding="{Binding ID}" Width="250"/>
+                    <DataGridComboBoxColumn x:Name="bm1" Header="利率类型"
+                                            SortMemberPath="ID"
+                                            SelectedValueBinding="{Binding RateType}"
+                                             SelectedValuePath="id" DisplayMemberPath="mc"
+                                            Selector.IsSelected="True" Width="250"/>
+                    <DataGridTextColumn Header="利率" Binding="{Binding Rate}" Width="200"/>
+                    
+           
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="保存" Width="70" Margin="0 10 0 0" Click="btnSave_Click"/>
+        </StackPanel>
+
+    </Border>
+
+
+</Page>

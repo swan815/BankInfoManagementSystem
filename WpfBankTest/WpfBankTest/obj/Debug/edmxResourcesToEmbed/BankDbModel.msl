@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BankInfoManagementModelStoreContainer" CdmEntityContainer="BankInfoManagementEntities">
+    <EntitySetMapping Name="CreditCardInfo">
+      <EntityTypeMapping TypeName="BankInfoManagementModel.CreditCardInfo">
+        <MappingFragment StoreEntitySet="CreditCardInfo">
+          <ScalarProperty Name="CNo" ColumnName="CNo" />
+          <ScalarProperty Name="CName" ColumnName="CName" />
+          <ScalarProperty Name="CPassword" ColumnName="CPassword" />
+          <ScalarProperty Name="CBalance" ColumnName="CBalance" />
+          <ScalarProperty Name="CDate" ColumnName="CDate" />
+          <ScalarProperty Name="COpenAdress" ColumnName="COpenAdress" />
+          <ScalarProperty Name="CPhoneNo" ColumnName="CPhoneNo" />
+          <ScalarProperty Name="CLoss" ColumnName="CLoss" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeposInfo">
+      <EntityTypeMapping TypeName="BankInfoManagementModel.DeposInfo">
+        <MappingFragment StoreEntitySet="DeposInfo">
+          <ScalarProperty Name="CNo" ColumnName="CNo" />
+          <ScalarProperty Name="CName" ColumnName="CName" />
+          <ScalarProperty Name="CSex" ColumnName="CSex" />
+          <ScalarProperty Name="CPassword" ColumnName="CPassword" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="CDate" ColumnName="CDate" />
+          <ScalarProperty Name="CAdress" ColumnName="CAdress" />
+          <ScalarProperty Name="CPhoneNum" ColumnName="CPhoneNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmploeeInfo">
+      <EntityTypeMapping TypeName="BankInfoManagementModel.EmploeeInfo">
+        <MappingFragment StoreEntitySet="EmploeeInfo">
+          <ScalarProperty Name="YWorkSalary" ColumnName="YWorkSalary" />
+          <ScalarProperty Name="YNo" ColumnName="YNo" />
+          <ScalarProperty Name="YPassword" ColumnName="YPassword" />
+          <ScalarProperty Name="YName" ColumnName="YName" />
+          <ScalarProperty Name="YPosition" ColumnName="YPosition" />
+          <ScalarProperty Name="YSex" ColumnName="YSex" />
+          <ScalarProperty Name="YPhoneNum" ColumnName="YPhoneNum" />
+          <ScalarProperty Name="YID" ColumnName="YID" />
+          <ScalarProperty Name="YWorkDate" ColumnName="YWorkDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RateInfo">
+      <EntityTypeMapping TypeName="BankInfoManagementModel.RateInfo">
+        <MappingFragment StoreEntitySet="RateInfo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RateType" ColumnName="RateType" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OperationLog">
+      <EntityTypeMapping TypeName="BankInfoManagementModel.OperationLog">
+        <MappingFragment StoreEntitySet="OperationLog">
+          <ScalarProperty Name="Interest" ColumnName="Interest" />
+          <ScalarProperty Name="CNo" ColumnName="CNo" />
+          <ScalarProperty Name="CName" ColumnName="CName" />
+          <ScalarProperty Name="CStyle" ColumnName="CStyle" />
+          <ScalarProperty Name="CDate" ColumnName="CDate" />
+          <ScalarProperty Name="CMoney" ColumnName="CMoney" />
+          <ScalarProperty Name="CTimeLen" ColumnName="CTimeLen" />
+          <ScalarProperty Name="CRate" ColumnName="CRate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransferInfo">
+      <EntityTypeMapping TypeName="BankInfoManagementModel.TransferInfo">
+        <MappingFragment StoreEntitySet="TransferInfo">
+          <ScalarProperty Name="OutNo" ColumnName="OutNo" />
+          <ScalarProperty Name="OutName" ColumnName="OutName" />
+          <ScalarProperty Name="InNo" ColumnName="InNo" />
+          <ScalarProperty Name="TransMoney" ColumnName="TransMoney" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
